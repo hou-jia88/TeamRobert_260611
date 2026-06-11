@@ -1,0 +1,40 @@
+backend/config.py - API 配置管理
+backend/llm_client.py - DeepSeek 客户端封装
+.env - 环境变量配置文件（需填入您的 API Key）
+.env.example - 配置示例文件
+.gitignore - Git 忽略文件（保护 API Key）
+test_deepseek.py - API 测试脚本
+setup_api_key.py - 交互式配置助手
+DEEPSEEK_SETUP.md - 详细配置指南
+
+
+`````````````````````````````````````````````
+
+测试连接-python test_deepseek.py
+
+
+待办：
+我可以帮您实现** Schema 感知**，让大模型了解数据库结构：
+方案1：在系统提示中添加字段信息（推荐）
+def extract_intent(self, user_message: str) -> Dict:
+    system_prompt = """你是一个智能团队协作助手。
+
+📋 数据库字段说明：
+
+【任务表 Task】
+- title: 任务标题（必填）
+- assignee: 负责人（必填）
+- deadline: 截止时间（可选，如"下周五"、"2026-06-05"）
+- status: 状态（待办/进行中/已完成）
+- priority: 优先级（高/中/低，默认中）
+- description: 任务描述（可选）
+
+【会议表 Meeting】
+- title: 会议主题（必填）
+- date: 日期（如"2026-05-30"）
+- time: 时间（如"14:00"）
+- participants: 参与者
+- location: 地点
+- agenda: 议程
+
+请分析用户消息并返回JSON..."""
